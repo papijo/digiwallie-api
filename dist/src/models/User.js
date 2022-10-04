@@ -31,6 +31,15 @@ const UserSchema = new mongoose_1.Schema({
     password: { type: String, required: true },
     avatar: { type: String, required: true },
     accounts: { type: [], required: true },
+    isUser: { type: Boolean, default: true, required: true },
+    isAdmin: { type: Boolean, default: false, required: true },
+    isStaff: { type: Boolean, default: false, required: true },
+    isVerified: { type: Boolean, default: false, required: true },
+    verificationToken: { type: String },
+    verificationTokenDateTime: { type: Date },
+    passwordResetToken: { type: String },
+    passwordResetTokenExpiryDate: { type: Date },
+    loginCountCollection: { type: [] },
 }, { timestamps: true });
 const userModel = mongoose_1.default.model("User", UserSchema);
 exports.default = userModel;

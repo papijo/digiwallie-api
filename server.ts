@@ -1,6 +1,6 @@
 import app from "./app";
 import http from "http";
-import config from "./src/utils/config";
+import config from "./src/utils/configuration/config";
 
 const server = http.createServer(app);
 

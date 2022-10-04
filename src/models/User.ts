@@ -1,4 +1,4 @@
-import mongoose, { Schema, Types } from "mongoose";
+import mongoose, { Date, Schema, Types } from "mongoose";
 
 interface User {
   firstname: string;
@@ -7,6 +7,15 @@ interface User {
   password: string;
   avatar?: string;
   accounts: Types.Array<string>;
+  isAdmin: boolean;
+  isStaff: boolean;
+  isUser: boolean;
+  isVerified: boolean;
+  verificationToken: string;
+  verificationTokenDateTime: Date;
+  passwordResetToken: string;
+  passwordResetTokenExpiryDate: Date;
+  loginCountCollection: Types.Array<Date>;
 }
 
 const UserSchema: Schema = new Schema<User>(
@@ -17,6 +26,15 @@ const UserSchema: Schema = new Schema<User>(
     password: { type: String, required: true },
     avatar: { type: String, required: true },
     accounts: { type: [], required: true },
+    isUser: { type: Boolean, default: true, required: true },
+    isAdmin: { type: Boolean, default: false, required: true },
+    isStaff: { type: Boolean, default: false, required: true },
+    isVerified: { type: Boolean, default: false, required: true },
+    verificationToken: { type: String },
+    verificationTokenDateTime: { type: Date },
+    passwordResetToken: { type: String },
+    passwordResetTokenExpiryDate: { type: Date },
+    loginCountCollection: { type: [] },
   },
   { timestamps: true }
 );

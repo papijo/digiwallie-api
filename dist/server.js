@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const app_1 = __importDefault(require("./app"));
 const http_1 = __importDefault(require("http"));
-const config_1 = __importDefault(require("./src/utils/config"));
+const config_1 = __importDefault(require("./src/utils/configuration/config"));
 const server = http_1.default.createServer(app_1.default);
 if (config_1.default.NODE_ENV === "production") {
     console.log = function () { };

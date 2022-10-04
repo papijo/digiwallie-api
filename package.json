@@ -7,7 +7,7 @@
     "test": "mocha --recursive",
     "build": "npx tsc",
     "start": "node dist/server.js",
-    "serve": "pm2 start server.js --name API -o ./logs/pmLogs/api.log -e ./logs/pmLogs/error.log",
+    "serve": "pm2 start dist/server.js --name API -o ./logs/pmLogs/api.log -e ./logs/pmLogs/error.log",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/server.js\""
   },
   "keywords": [],
@@ -25,6 +25,8 @@
     "express-rate-limit": "^6.6.0",
     "express-validator": "^6.14.2",
     "helmet": "^6.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.4",
     "mongoose": "^6.6.2",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
@@ -32,6 +34,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.14",
+    "@types/jsonwebtoken": "^8.5.9",
     "@types/node": "^18.7.23",
     "chai": "^4.3.6",
     "chai-http": "^4.3.0",

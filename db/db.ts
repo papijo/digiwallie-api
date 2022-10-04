@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import config from "../src/utils/config";
+import config from "../src/utils/configuration/config";
 
 mongoose
   .connect(config.MONGODB_URI)
