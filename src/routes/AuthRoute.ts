@@ -32,3 +32,5 @@ router.post("/verifyprofile", VerifyProfileController);
 
 //Refresh JWT
 router.post("/jwt/refresh", RefreshJWTController);
+
+export = router;

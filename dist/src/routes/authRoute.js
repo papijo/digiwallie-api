@@ -2,7 +2,6 @@
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 const RegisterController_1 = __importDefault(require("../controllers/auth/RegisterController"));
 const AdminRegisterController_1 = __importDefault(require("../controllers/auth/AdminRegisterController"));
 const StaffRegisterController_1 = __importDefault(require("../controllers/auth/StaffRegisterController"));
@@ -17,4 +16,5 @@ router.post("/admin/register", AdminRegisterController_1.default);
 router.post("/login", LoginController_1.default);
 router.post("/verifyprofile", VerifyProfileController_1.default);
 router.post("/jwt/refresh", RefreshJWTController_1.default);
-//# sourceMappingURL=authRoute.js.map
+module.exports = router;
+//# sourceMappingURL=AuthRoute.js.map

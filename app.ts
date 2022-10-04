@@ -10,8 +10,10 @@ const basicAuth = require("express-basic-auth");
 //Create Express Application
 const app: Express = express();
 
-//Third-party Middleware
+//Route Imports
+import AuthRoute from "./src/routes/AuthRoute";
 
+//Third-party Middleware
 app.use(express.json());
 app.use(cors());
 app.use(morgan("common"));
@@ -26,5 +28,8 @@ to the server
 const users: object = { pass: config.API_AUTH };
 const unauthorizedResponse: object = { message: "Not Authorised" };
 app.use(basicAuth({ users, unauthorizedResponse }));
+
+//Route handlers
+app.use("/digiwallie/api/v1/auth", AuthRoute);
 
 export default app;
