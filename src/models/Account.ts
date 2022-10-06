@@ -8,7 +8,7 @@ interface Account {
 
 const AccountSchema: Schema = new Schema<Account>(
   {
-    accountNumber: { type: String, required: true },
+    accountNumber: { type: String, required: true, unique: true },
     owner: { type: Schema.Types.ObjectId, ref: "User" },
     balance: { type: Number, required: true },
   },

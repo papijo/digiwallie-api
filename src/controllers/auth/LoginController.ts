@@ -1,5 +1,4 @@
 import User from "../../models/User";
-import config from "../../utils/configuration/config";
 import { Request, Response } from "express";
 
 //CommonJS Imports
@@ -10,6 +9,9 @@ import {
   generateAccessToken,
   generateRefreshAccessToken,
 } from "../../utils/helper/generateJWT";
+
+//Configuration
+import config from "../../utils/configuration/config";
 
 //Login Controller
 const LoginController = async (req: Request, res: Response) => {

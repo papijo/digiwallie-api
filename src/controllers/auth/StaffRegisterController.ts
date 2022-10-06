@@ -1,5 +1,5 @@
 import User from "../../models/User";
-import config from "../../utils/configuration/config";
+
 import { Request, Response } from "express";
 
 //Helper Functions
@@ -7,6 +7,9 @@ import generateOTP from "../../utils/helper/generateOTP";
 
 //CommonJs Imports
 const Crypto = require("crypto");
+
+//Configuration
+import config from "../../utils/configuration/config";
 
 //Register Controller
 const StaffRegisterController = async (req: Request, res: Response) => {

@@ -2,7 +2,6 @@ import User from "../../models/User";
 import { Request, Response } from "express";
 
 //Get all Users Controllers
-
 const GetAllUsersControllers = async (req: Request, res: Response) => {
   const query = req.query.new;
   try {
