@@ -26,4 +26,4 @@ const db = mongoose_1.default
     console.error(dbConnectionErrorObject);
 });
 exports.default = db;
-//# sourceMappingURL=db.js.map
+//# sourceMappingURL=mongoDB.js.map

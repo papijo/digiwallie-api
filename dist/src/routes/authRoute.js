@@ -8,6 +8,7 @@ const StaffRegisterController_1 = __importDefault(require("../controllers/auth/S
 const VerifyProfileController_1 = __importDefault(require("../controllers/auth/VerifyProfileController"));
 const RefreshJWTController_1 = __importDefault(require("../controllers/auth/RefreshJWTController"));
 const LoginController_1 = __importDefault(require("../controllers/auth/LoginController"));
+const RequestNewVerificationTokenController_1 = __importDefault(require("../controllers/auth/RequestNewVerificationTokenController"));
 const express_1 = require("express");
 const router = (0, express_1.Router)();
 router.post("/user/register", RegisterController_1.default);
@@ -16,5 +17,6 @@ router.post("/admin/register", AdminRegisterController_1.default);
 router.post("/login", LoginController_1.default);
 router.post("/verifyprofile", VerifyProfileController_1.default);
 router.post("/jwt/refresh", RefreshJWTController_1.default);
+router.post("/new/vt/otp", RequestNewVerificationTokenController_1.default);
 module.exports = router;
 //# sourceMappingURL=AuthRoute.js.map

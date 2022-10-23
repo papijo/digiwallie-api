@@ -10,6 +10,15 @@ const RequestNewVerificationOTP = async (req: Request, res: Response) => {
   try {
     //Check to see if user has been verified
     const checkUser = await User.findOne({ email: req.body.email });
+
+    //Check to see if User exists
+    if (!checkUser) {
+      return res
+        .status(400)
+        .json({ error: true, message: "User Does not Exists" });
+    }
+
+    //Check to see if User is verified
     if (checkUser.isVerified === true) {
       return res.status(403).json({
         message:

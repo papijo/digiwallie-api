@@ -29,7 +29,7 @@ const UserSchema = new mongoose_1.Schema({
     lastname: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
-    avatar: { type: String, required: true },
+    avatar: { type: String },
     accounts: { type: [], required: true },
     isUser: { type: Boolean, default: true, required: true },
     isAdmin: { type: Boolean, default: false, required: true },

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import config from "../src/utils/configuration/config";
 
-mongoose
+const db = mongoose
   .connect(config.MONGODB_URI)
   .then(() => {
     const date = new Date();
@@ -21,3 +21,5 @@ mongoose
     };
     console.error(dbConnectionErrorObject);
   });
+
+export default db;

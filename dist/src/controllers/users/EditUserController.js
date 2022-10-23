@@ -13,38 +13,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("../../models/User"));
-const generateOTP_1 = __importDefault(require("./../../utils/helper/generateOTP"));
-const RequestNewVerificationOTP = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const EditUserController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const checkUser = yield User_1.default.findOne({ email: req.body.email });
-        if (!checkUser) {
-            return res
-                .status(400)
-                .json({ error: true, message: "User Does not Exists" });
-        }
-        if (checkUser.isVerified === true) {
-            return res.status(403).json({
-                message: "Your Account has already been verified, please Login to use the Risigner App.",
-            });
-        }
-        let otp = (0, generateOTP_1.default)(6);
-        const filter = { email: req.body.email };
-        const update = {
-            verificationToken: otp,
-            verificationTokenDateTime: new Date(),
-        };
-        const user = yield User_1.default.findOneAndUpdate(filter, update, { new: true });
-        res.status(200).json(user);
+        const updatedUser = yield User_1.default.findByIdAndUpdate(req.params.id, {
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email,
+            phoneNumber: req.body.phoneNumber,
+        }, { new: true });
+        res.status(200).json(updatedUser);
     }
     catch (error) {
         const errorMessage = {
             error: error,
-            location: "Request New Verification Token Route",
+            location: "Edit User Route",
             time: new Date(),
         };
         console.error(errorMessage);
         res.status(500).json(error);
     }
 });
-exports.default = RequestNewVerificationOTP;
-//# sourceMappingURL=RequestNewVerificationTokenController.js.map
+exports.default = EditUserController;
+//# sourceMappingURL=EditUserController.js.map

@@ -10,8 +10,12 @@ const basicAuth = require("express-basic-auth");
 //Create Express Application
 const app: Express = express();
 
+//Call the Database
+require("./db/mongoDB");
+
 //Route Imports
 import AuthRoute from "./src/routes/AuthRoute";
+import UserRoute from "./src/routes/UserRoute";
 
 //Third-party Middleware
 app.use(express.json());
@@ -31,5 +35,6 @@ app.use(basicAuth({ users, unauthorizedResponse }));
 
 //Route handlers
 app.use("/digiwallie/api/v1/auth", AuthRoute);
+app.use("/digiwallie/api/v1/users", UserRoute);
 
 export default app;

@@ -1,8 +1,6 @@
 import User from "../../models/User";
 import { Request, Response } from "express";
-
-//CommonJS Imports
-const Crypto = require("crypto");
+import * as Crypto from "crypto-js";
 
 //Helper functions
 import {
@@ -47,15 +45,16 @@ const LoginController = async (req: Request, res: Response) => {
     const refreshAccessToken = generateRefreshAccessToken(user);
 
     //Add Date to Login Count
-    const newDate = new Date();
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth() + 1;
-    const day = newDate.getDate();
-    const dateLogin = [day, month, year].join("-");
+    const newDate: Date = new Date();
+    const year: number = newDate.getFullYear();
+    const month: number = newDate.getMonth() + 1;
+    const day: number = newDate.getDate();
+    const dateLogin: string = [day, month, year].join("-");
 
     const addToLoginCount = async () => {
-      if (user.loginCount.includes(dateLogin) !== true) {
-        user.loginCount.push(dateLogin);
+      const countArray: Array<String> = user.loginCountCollection;
+      if (countArray.includes(dateLogin) !== true) {
+        countArray.push(dateLogin);
         user.save();
       }
     };

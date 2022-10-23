@@ -5,6 +5,7 @@ import StaffRegisterController from "../controllers/auth/StaffRegisterController
 import VerifyProfileController from "../controllers/auth/VerifyProfileController";
 import RefreshJWTController from "../controllers/auth/RefreshJWTController";
 import LoginController from "../controllers/auth/LoginController";
+import RequestNewVerificationOTP from "../controllers/auth/RequestNewVerificationTokenController";
 
 /* 
 Add Validation and Sanitation Code
@@ -32,5 +33,8 @@ router.post("/verifyprofile", VerifyProfileController);
 
 //Refresh JWT
 router.post("/jwt/refresh", RefreshJWTController);
+
+//Request New Verification Token
+router.post("/new/vt/otp", RequestNewVerificationOTP);
 
 export = router;

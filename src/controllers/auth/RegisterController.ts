@@ -1,12 +1,11 @@
 import User from "../../models/User";
-
+import * as Crypto from "crypto-js";
 import { Request, Response } from "express";
 
 //Helper Functions
 import generateOTP from "./../../utils/helper/generateOTP";
 
 //CommonJs Imports
-const Crypto = require("crypto");
 
 //Configuration
 import config from "../../utils/configuration/config";
@@ -23,16 +22,22 @@ const RegisterController = async (req: Request, res: Response) => {
         .json({ error: true, message: "User Already Exists" });
     }
 
+    if (!req.body.password) {
+      return res
+        .status(400)
+        .json({ error: true, message: "Empty Password Field" });
+    }
     let otp: string = generateOTP(6);
+    const encryptedPassword: string = Crypto.AES.encrypt(
+      req.body.password,
+      config.PASS_SECRET_CRYPTOJS
+    ).toString();
 
     const newUser = new User({
       firstname: req.body.firstname,
       lastname: req.body.lastname,
       email: req.body.email,
-      password: Crypto.AES.encrypt(
-        req.body.password,
-        config.PASS_SECRET_CRYPTOJS
-      ).toString(),
+      password: encryptedPassword,
       isUser: true,
       verificationToken: otp,
       verificationTokenDateTime: new Date(),

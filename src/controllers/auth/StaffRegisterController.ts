@@ -1,12 +1,9 @@
 import User from "../../models/User";
-
+import * as Crypto from "crypto-js";
 import { Request, Response } from "express";
 
 //Helper Functions
 import generateOTP from "../../utils/helper/generateOTP";
-
-//CommonJs Imports
-const Crypto = require("crypto");
 
 //Configuration
 import config from "../../utils/configuration/config";
@@ -23,6 +20,11 @@ const StaffRegisterController = async (req: Request, res: Response) => {
         .json({ error: true, message: "User Already Exists" });
     }
 
+    if (!req.body.password) {
+      return res
+        .status(400)
+        .json({ error: true, message: "Empty Password Field" });
+    }
     let otp: string = generateOTP(6);
 
     const newUser = new User({

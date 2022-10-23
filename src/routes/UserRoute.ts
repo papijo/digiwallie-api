@@ -42,3 +42,5 @@ router.get("/verified", GetVerifiedUsersControllers);
 
 //Verify Changed Password Controller
 router.put("/verify/changedpassword", VerifyChangedPasswordController);
+
+export = router;
