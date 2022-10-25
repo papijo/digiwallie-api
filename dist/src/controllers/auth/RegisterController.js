@@ -64,7 +64,6 @@ const RegisterController = (req, res) => __awaiter(void 0, void 0, void 0, funct
             verificationToken: otp,
             verificationTokenDateTime: new Date(),
         });
-        console.log(otp);
         const savedUser = yield newUser.save();
         res.status(200).json(savedUser);
     }

@@ -1,3 +1,5 @@
+import AccountModel from "../../models/Account";
+
 const generateAccount = (length: number): string => {
   const chars = "1234567890";
 
@@ -12,4 +14,18 @@ const generateAccount = (length: number): string => {
   return str;
 };
 
-export default generateAccount;
+const setAccountNumber = async (accountNumber: string) => {
+  const account = await AccountModel.findOne({ accountNumber });
+
+  if (!account) {
+    return accountNumber;
+  } else {
+    const accountNumber = generateAccount(10);
+    setAccountNumber(accountNumber);
+  }
+};
+
+const accountNumber = generateAccount(10);
+const testAccountNumber = setAccountNumber(accountNumber);
+
+export default testAccountNumber;

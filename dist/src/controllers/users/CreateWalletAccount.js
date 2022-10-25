@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const User_1 = __importDefault(require("../../models/User"));
 const Account_1 = __importDefault(require("../../models/Account"));
-const uuid_1 = require("uuid");
+let newAccountNumber;
 const CreateWalletAccount = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const user = yield User_1.default.findOne({ email: req.body.email });
@@ -27,14 +27,38 @@ const CreateWalletAccount = (req, res) => __awaiter(void 0, void 0, void 0, func
             });
         }
         const accountCount = user.accounts.length;
-        if (accountCount > 3) {
-            res.status(403).json({
+        if (accountCount == 3) {
+            return res.status(403).json({
                 message: "You cannot open another account as you have more than 3 Accounts",
             });
         }
-        let newAccountNumber = (0, uuid_1.v4)();
+        const generateRandomAccountNumber = (length) => {
+            const chars = "1234567890";
+            if (!length) {
+                length = Math.floor(Math.random() * chars.length);
+            }
+            let str = "";
+            for (let i = 0; i < length; i += 1) {
+                str += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return str;
+        };
+        const setAccountNumber = (accountNumber) => __awaiter(void 0, void 0, void 0, function* () {
+            const account = yield Account_1.default.findOne({ accountNumber });
+            if (!account) {
+                newAccountNumber = accountNumber;
+                return newAccountNumber;
+            }
+            else {
+                const accountNumber = generateRandomAccountNumber(10);
+                setAccountNumber(accountNumber);
+            }
+        });
+        const accountNumber = generateRandomAccountNumber(10);
+        setAccountNumber(accountNumber);
+        console.log(accountNumber);
         const newAccount = new Account_1.default({
-            accountNumber: newAccountNumber,
+            accountNumber: accountNumber,
             owner: user._id,
             balance: 0,
         });

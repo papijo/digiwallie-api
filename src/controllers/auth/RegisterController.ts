@@ -42,7 +42,6 @@ const RegisterController = async (req: Request, res: Response) => {
       verificationToken: otp,
       verificationTokenDateTime: new Date(),
     });
-    console.log(otp);
 
     const savedUser = await newUser.save();
 
